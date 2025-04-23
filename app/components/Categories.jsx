@@ -1,7 +1,7 @@
 export default function Categories({ onSelectSport }) {
   return (
-    <header className="bg-[#1E2939] w-full p-5 flex-col">
-      <div className="flex flex-row flex-wrap gap-5 justify-center">
+    <header className="bg-[#1E2939] w-full p-5 overflow-hidden">
+      <div className="flex flex-wrap gap-5 justify-center scrollbar-hide">
         <CatCard sport="Football" image="/nogomet.jpg" onClick={() => onSelectSport("Football")} />
         <CatCard sport="Basketball" image="/kosarka.png" onClick={() => onSelectSport("Basketball")} />
         <CatCard sport="Tennis" image="/tenis.jpg" onClick={() => onSelectSport("Tennis")} />
@@ -16,7 +16,7 @@ export default function Categories({ onSelectSport }) {
 function CatCard({ sport, image, onClick }) {
   return (
     <div
-      className="w-[200px] h-[150px] rounded-2xl bg-cover bg-center relative shadow-lg cursor-pointer duration-300 hover:scale-110"
+      className="inline-block w-[200px] h-[150px] rounded-2xl bg-cover bg-center relative shadow-lg cursor-pointer duration-300 hover:scale-110 flex-shrink-0"
       style={{ backgroundImage: `url(${image})` }}
       onClick={onClick}
     >

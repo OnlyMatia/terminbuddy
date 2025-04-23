@@ -17,7 +17,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex justify-center items-center flex-col">
+    <main className="flex justify-center items-center flex-col pt-18">
       <Categories onSelectSport={(sport) => setSelectedSport(sport)} />
       <ActiveSports selectedSport={selectedSport} setSelectedSport={setSelectedSport} />
     </main>

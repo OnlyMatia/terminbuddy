@@ -87,7 +87,7 @@ export default function Post() {
     const currentDate = new Date().toISOString().split("T")[0];  
 
     return (
-        <div className="min-h-screen bg-[#1E2939] text-white py-10 px-4 flex justify-center">
+        <div className="min-h-screen bg-[#1E2939] text-white py-10 px-4 flex justify-center items-center">
             <div className="w-full max-w-7xl">
                 <h1 className="text-4xl font-bold mb-8 text-center">Create New Post</h1>
                 <form

@@ -14,7 +14,7 @@ export default function SportDetails() {
   const author = searchParams.get("author")  
 
   return (
-    <div className="min-h-screen bg-[#101828] text-white flex justify-center items-start py-12 px-4">
+    <div className="min-h-screen bg-[#101828] text-white flex justify-center items-start py-12 px-4 pt-19">
       <div className="w-full max-w-7xl flex flex-col items-center gap-10">
         <div className="w-full max-w-2xl bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border-2 border-black">
           <div

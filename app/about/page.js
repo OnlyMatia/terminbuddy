@@ -1,6 +1,6 @@
 export default function About() {
     return (
-        <section className="bg-[#1E2939] text-white py-16 px-4 min-h-screen">
+        <section className="bg-[#1E2939] text-white py-16 px-4 min-h-screen flex  items-center">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-4xl md:text-5xl font-bold mb-10 text-center uppercase">
                     About TerminBuddy
