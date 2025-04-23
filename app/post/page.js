@@ -1,14 +1,16 @@
 "use client"
 import { useState } from "react"
+import { addPost } from "../utils/addPost"
+import { v4 as uuidv4 } from "uuid"  
 
 const sportImages = {
-  Football: "/nogomet.jpg",
-  Basketball: "/kosarka.png",
-  Tennis: "/tenis.jpg",
-  Volleyball: "/odbojka.jpg",
-  Futsal: "/futsal.jpg",
-  Padel: "/padel.jpg",
-  TableTennis: "/stolni-tenis.jpg",
+    Football: "/nogomet.jpg",
+    Basketball: "/kosarka.png",
+    Tennis: "/tenis.jpg",
+    Volleyball: "/odbojka.jpg",
+    Futsal: "/futsal.jpg",
+    Padel: "/padel.jpg",
+    TableTennis: "/stolni-tenis.jpg",
 }
 
 const locations = ["Mostar", "Sarajevo", "Split", "Zagreb"]
@@ -22,8 +24,11 @@ export default function Post() {
         date: "",
         location: "",
         peopleMissing: "",
-        author: ""  // Dodano polje za autora
+        author: ""
     })
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
+    const [success, setSuccess] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -39,27 +44,47 @@ export default function Post() {
         }
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const allFieldsFilled = Object.values(formData).every(value => value.trim() !== "")
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const allFieldsFilled = Object.values(formData).every((value) => value.trim() !== '');
         if (!allFieldsFilled) {
-            alert("Please fill out all fields.")
-            return
+            alert('Please fill out all fields.');
+            return;
         }
-        console.log("New post data:", formData)
 
-        // Reset form after submission
-        setFormData({
-            sport: "",
-            image: "",
-            description: "",
-            time: "",
-            date: "",
-            location: "",
-            peopleMissing: "",
-            author: ""  // Reset autora
-        })
-    }
+        setLoading(true);
+        setError('');
+        setSuccess(false);
+    
+        
+        const postWithId = { ...formData, id: uuidv4() };  
+
+        try {
+            const newPost = await addPost(postWithId);  
+    
+            if (newPost && newPost.length > 0) {
+                setSuccess(true);
+            }
+    
+            setFormData({
+                sport: '',
+                image: '',
+                description: '',
+                time: '',
+                date: '',
+                location: '',
+                peopleMissing: '',
+                author: ''
+            });
+        } catch (error) {
+            setError('Failed to add post. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const currentDate = new Date().toISOString().split("T")[0];  
 
     return (
         <div className="min-h-screen bg-[#1E2939] text-white py-10 px-4 flex justify-center">
@@ -69,7 +94,6 @@ export default function Post() {
                     onSubmit={handleSubmit}
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-900 p-8 rounded-2xl shadow-xl"
                 >
-                    {/* Polje za unos autora */}
                     <div className="flex flex-col">
                         <label className="mb-2 font-semibold uppercase">Author</label>
                         <input
@@ -83,7 +107,6 @@ export default function Post() {
                         />
                     </div>
 
-                    {/* Polje za izbor sporta */}
                     <div className="flex flex-col">
                         <label className="mb-2 font-semibold uppercase">Sport</label>
                         <select
@@ -102,7 +125,6 @@ export default function Post() {
                         </select>
                     </div>
 
-                    {/* Polje za opis */}
                     <div className="flex flex-col">
                         <label className="mb-2 font-semibold uppercase">Description</label>
                         <textarea
@@ -115,7 +137,6 @@ export default function Post() {
                         />
                     </div>
 
-                    {/* Polje za vrijeme */}
                     <div className="flex flex-col">
                         <label className="mb-2 font-semibold uppercase">Time</label>
                         <input
@@ -128,7 +149,6 @@ export default function Post() {
                         />
                     </div>
 
-                    {/* Polje za datum */}
                     <div className="flex flex-col">
                         <label className="mb-2 font-semibold uppercase">Date</label>
                         <input
@@ -137,11 +157,11 @@ export default function Post() {
                             value={formData.date}
                             onChange={handleChange}
                             required
+                            min={currentDate}
                             className="p-3 bg-transparent border-b border-white text-white focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
                         />
                     </div>
 
-                    {/* Polje za lokaciju */}
                     <div className="flex flex-col">
                         <label className="mb-2 font-semibold uppercase">Location</label>
                         <select
@@ -160,7 +180,6 @@ export default function Post() {
                         </select>
                     </div>
 
-                    {/* Polje za broj igrača koji nedostaju */}
                     <div className="flex flex-col">
                         <label className="mb-2 font-semibold uppercase">Players Missing</label>
                         <input
@@ -175,7 +194,6 @@ export default function Post() {
                         />
                     </div>
 
-                    {/* Prikaz slike, ako postoji */}
                     {formData.image && (
                         <div className="col-span-1 md:col-span-2">
                             <label className="mb-2 block font-semibold uppercase">Image Preview</label>
@@ -186,16 +204,19 @@ export default function Post() {
                         </div>
                     )}
 
-                    {/* Dugme za slanje */}
                     <div className="col-span-1 md:col-span-2 flex justify-center mt-4">
                         <button
                             type="submit"
                             className="bg-green-600 hover:bg-green-500 px-8 py-3 rounded-lg font-semibold transition"
+                            disabled={loading}
                         >
-                            Post
+                            {loading ? "Submitting..." : "Post"}
                         </button>
                     </div>
                 </form>
+
+                {error && <p className="text-red-500 mt-4">{error}</p>}
+                {success && <p className="text-green-500 mt-4">Post successfully added!</p>}
             </div>
         </div>
     )
