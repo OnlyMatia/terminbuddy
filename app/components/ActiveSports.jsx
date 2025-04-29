@@ -53,10 +53,10 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
   }
 
   return (
-    <section className="min-h-screen bg-[#101828] w-full text-white">
+    <section id="main" className="min-h-screen bg-[#101828] w-full text-white">
       <div className="max-w-7xl mx-auto px-5">
-        <h2 className="text-center py-10 text-5xl font-semibold">Currently Active</h2>
-        <div className="flex flex-col md:flex-row gap-5 justify-center mb-10">
+        <h2 className="text-center py-10 text-4xl sm:text-5xl font-semibold">Currently Active:</h2>
+        <div className="flex flex-row gap-5 justify-center mb-10">
           <select
             className="bg-gray-800 text-white p-3 rounded-xl w-full md:w-1/3 outline-none border border-gray-700 focus:ring-2 focus:ring-blue-500"
             value={selectedLocation}
@@ -86,7 +86,7 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
           </select>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-screen pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
           {loading ? (
             <div className="col-span-full text-center text-gray-400">Loading posts...</div>
           ) : posts.length > 0 ? (

@@ -73,34 +73,34 @@ export default function Navbar() {
 
         
         {isOpen && (
-            <div className="md:hidden fixed top-0 left-0 w-full bg-[#1e2939] z-40">
-            <ul className="flex flex-col min-h-screen justify-center items-center gap-6 p-5">
-                {links.map((item, i) => {
-                const isActive = pathname === item.route
-                return (
-                    <li key={i}>
-                    <Link
-                        onClick={() => setOpen(false)}
-                        href={item.route}
-                        className={`text-7xl font-bold capitalize `}
-                    >
-                        {item.name}
-                    </Link>
-                    </li>
-                )
-                })}
-            </ul>
+            <div className="md:hidden fixed top-0 left-0 w-full bg-[#101828] z-40">
+                <ul className="flex flex-col min-h-screen justify-center items-center gap-6 p-5">
+                    {links.map((item, i) => {
+                    const isActive = pathname === item.route
+                    return (
+                        <li key={i}>
+                        <Link
+                            onClick={() => setOpen(false)}
+                            href={item.route}
+                            className={`text-7xl font-bold capitalize `}
+                        >
+                            {item.name}
+                        </Link>
+                        </li>
+                    )
+                    })}
+                </ul>
 
-            <p className="bottom-0 fixed w-full text-center p-5 text-[#ffffff9c]">
-                Designed and Developed by{" "}
-                <a
-                href="https://portfolio-drab-six-47.vercel.app/"
-                target="_blank"
-                className="text-[#21c2218b] hover:text-[#21c221]"
-                >
-                Matija Šajin
-                </a>
-            </p>
+                <p className="bottom-0 fixed w-full text-center p-5 text-[#ffffff9c]">
+                    Designed and Developed by{" "}
+                    <a
+                    href="https://portfolio-three-wine-42.vercel.app/"
+                    target="_blank"
+                    className="text-[#21c2218b] hover:text-[#21c221]"
+                    >
+                    Matija
+                    </a>
+                </p>
             </div>
         )}
         </nav>
