@@ -1,7 +1,7 @@
 export default function Contact() {
     return (
         <section className="bg-[#1E2939] text-white min-h-screen py-16 px-4 flex items-center">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-start">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-start pt-6">
                 {/* Lijeva strana */}
                 <div className="flex-1 space-y-6 ">
                     <h2 className="text-4xl font-bold">Get in Touch</h2>

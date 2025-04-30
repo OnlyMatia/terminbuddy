@@ -1,9 +1,9 @@
 export default function About() {
     return (
         <section className="bg-[#1E2939] text-white py-16 px-4 min-h-screen flex  items-center">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto pt-6">
                 <h1 className="text-4xl md:text-5xl font-bold mb-10 text-center uppercase">
-                    About TerminBuddy
+                    Behind TerminBuddy
                 </h1>
                 <p className="text-lg md:text-xl text-[#d1d5db] leading-relaxed text-justify">
                     We are a group of university students who shared the same problem – finding people to play sports with or organizing matches was always a hassle. This inspired us to create TerminBuddy – a platform designed to bring people together through sports. Whether you're looking to join a game or you're missing a few players for your own match, TerminBuddy makes it easy.

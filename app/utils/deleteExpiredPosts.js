@@ -14,12 +14,12 @@ export const deleteExpiredPosts = async () => {
 
         const expiredPosts = posts.filter(post => {
             const postDate = new Date(`${post.date}T${post.time}`);
-            return postDate < currentDateTime;  // Post je prošao
+            return postDate < currentDateTime;  
         });
 
         if (expiredPosts.length > 0) {
             const deletePromises = expiredPosts.map(post => 
-                supabase.from('posts').delete().eq('id', post.id)  // Koristimo 'id' za brisanje
+                supabase.from('posts').delete().eq('id', post.id)  
             );
             await Promise.all(deletePromises);
         }
