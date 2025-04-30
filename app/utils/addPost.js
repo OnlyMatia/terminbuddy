@@ -7,7 +7,7 @@ export const addPost = async (formData) => {
     try {
         
         const newPost = {
-            id: formData.id || uuidv4(), 
+            id: uuidv4(), 
             sport,
             image,
             description,

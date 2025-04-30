@@ -1,11 +1,12 @@
-"use client"
+'use client'
 import { useState, useEffect } from "react"
 import { supabase } from "../lib/supabaseClient"
 import { useRouter } from "next/navigation"
 
 export default function ActiveSports({ selectedSport, setSelectedSport }) {
   const [selectedLocation, setSelectedLocation] = useState("")
-  const [posts, setPosts] = useState([])
+  const [allPosts, setAllPosts] = useState([]) // Spremamo sve postove
+  const [filteredPosts, setFilteredPosts] = useState([]) // Spremamo filtrirane postove
   const [loading, setLoading] = useState(true)
 
   const router = useRouter()
@@ -13,43 +14,37 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true)
-      
-      let query = supabase.from('posts').select('*')
-      
-      if (selectedLocation) {
-        query = query.eq('location', selectedLocation)
-      }
 
-      if (selectedSport) {
-        query = query.eq('sport', selectedSport)
-      }
-
-      const { data, error } = await query
+      // Dohvati sve postove samo jednom
+      const { data, error } = await supabase.from('posts').select('*')
 
       if (error) {
         console.error("Greška prilikom dohvaćanja postova:", error.message)
       } else {
-        setPosts(data)
+        setAllPosts(data) // Spremi sve postove
+        setFilteredPosts(data) // Početno postavi filtrirane postove na sve postove
       }
+
       setLoading(false)
     }
 
     fetchPosts()
-  }, [selectedSport, selectedLocation])
+  }, [])
+
+  useEffect(() => {
+    // Filtriraj postove svaki put kad se odabere novi sport ili lokacija
+    const filtered = allPosts.filter((post) => {
+      const matchesSport = selectedSport ? post.sport === selectedSport : true
+      const matchesLocation = selectedLocation ? post.location === selectedLocation : true
+      return matchesSport && matchesLocation
+    })
+    setFilteredPosts(filtered)
+  }, [selectedSport, selectedLocation, allPosts])
 
   const handleCardClick = (card) => {
-    const query = new URLSearchParams({
-      sport: card.sport,
-      image: card.image || "/default-image.jpg",
-      description: card.description,
-      time: card.time,
-      date: card.date,
-      location: card.location,
-      peopleMissing: card.peoplemissing,
-      author: card.author,
-    }).toString()
+    sessionStorage.setItem("selectedCard", JSON.stringify(card))
 
-    router.push(`/sport?${query}`)
+    router.push(`/termin?id=${card.id}`)
   }
 
   return (
@@ -77,7 +72,7 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
           >
             <option value="">Odaberi sport (svi)</option>
             {[
-              "Football", "Futsal", "Volleyball", "Basketball", "Padel", "Tennis", "Table Tennis"
+              "Football", "Futsal", "Volleyball", "Basketball", "Padel", "Tennis", "TableTennis"
             ].map((sport) => (
               <option key={sport} value={sport}>
                 {sport}
@@ -89,8 +84,8 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
           {loading ? (
             <div className="col-span-full text-center text-gray-400">Loading posts...</div>
-          ) : posts.length > 0 ? (
-            posts.map((card, index) => (
+          ) : filteredPosts.length > 0 ? (
+            filteredPosts.map((card, index) => (
               <div
                 key={index}
                 onClick={() => handleCardClick(card)}

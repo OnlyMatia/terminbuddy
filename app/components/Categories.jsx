@@ -9,10 +9,30 @@ export default function Categories({ onSelectSport }) {
           if (el) {
           el.scrollIntoView({ behavior: "smooth" });
         }}} />
-        <CatCard sport="Tennis" image="/tenis.jpg" onClick={() => onSelectSport("Tennis")} />
-        <CatCard sport="Padel" image="/padel.jpg" onClick={() => onSelectSport("Padel")} />
-        <CatCard sport="Basketball" image="/kosarka.png" onClick={() => onSelectSport("Basketball")} />
-        <CatCard sport="Volleyball" image="/odbojka.jpg" onClick={() => onSelectSport("Volleyball")} />
+        <CatCard sport="Tennis" image="/tenis.jpg" 
+        onClick={() => {onSelectSport("Tennis")
+          const el = document.getElementById("main");
+          if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }}} />
+        <CatCard sport="Padel" image="/padel.jpg" 
+        onClick={() => {onSelectSport("Padel")
+          const el = document.getElementById("main");
+          if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }}} />
+        <CatCard sport="Basketball" image="/kosarka.png" 
+        onClick={() => {onSelectSport("Basketball")
+          const el = document.getElementById("main");
+          if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }}} />
+        <CatCard sport="Volleyball" image="/odbojka.jpg" 
+        onClick={() => {onSelectSport("Volleyball")
+          const el = document.getElementById("main");
+          if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }}} />
       </div>
     </header>
   )

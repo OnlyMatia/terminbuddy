@@ -1,7 +1,10 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { addPost } from "../utils/addPost"
 import { v4 as uuidv4 } from "uuid"  
+import { useRouter } from "next/navigation"
+import { supabase } from "../lib/supabaseClient"
+
 
 const sportImages = {
     Football: "/nogomet.jpg",
@@ -29,6 +32,27 @@ export default function Post() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const [success, setSuccess] = useState(false)
+    const router = useRouter()
+
+    useEffect(() => {
+        const checkUser = async () => {
+            const {
+                data: { user },
+                error,
+            } = await supabase.auth.getUser()
+    
+            if (error || !user) {
+                router.replace("/login")
+            } else {
+                setFormData((prev) => ({
+                    ...prev,
+                    author: user.user_metadata?.username || user.email,
+                }))
+            }
+        }
+    
+        checkUser()
+    }, [router])
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -94,18 +118,6 @@ export default function Post() {
                     onSubmit={handleSubmit}
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-900 p-8 rounded-2xl shadow-xl"
                 >
-                    <div className="flex flex-col">
-                        <label className="mb-2 font-semibold uppercase">Author</label>
-                        <input
-                            type="text"
-                            name="author"
-                            value={formData.author}
-                            onChange={handleChange}
-                            required
-                            placeholder="Enter your name"
-                            className="p-3 bg-transparent border-b border-white text-white focus:outline-none"
-                        />
-                    </div>
 
                     <div className="flex flex-col">
                         <label className="mb-2 font-semibold uppercase">Sport</label>
