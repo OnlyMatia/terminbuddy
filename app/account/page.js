@@ -25,7 +25,7 @@ export default function Account() {
   }
 
   return user ? (
-    <div className="min-h-screen bg-[#1E2939] text-white p-10">
+    <div className="min-h-screen bg-[#1E2939] text-white p-10 flex items-center justify-start">
       <div className="bg-gray-800 p-10 rounded-lg max-w-xl">
         <h2 className="text-3xl font-bold mb-6">Moj Profil</h2>
         <div className="space-y-4 text-left">

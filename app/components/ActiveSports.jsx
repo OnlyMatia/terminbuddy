@@ -15,7 +15,7 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
     const fetchPosts = async () => {
       setLoading(true)
 
-      // Dohvati sve postove samo jednom
+      // Dohvati sve postove
       const { data, error } = await supabase.from('posts').select('*')
 
       if (error) {
@@ -44,6 +44,7 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
   const handleCardClick = (card) => {
     sessionStorage.setItem("selectedCard", JSON.stringify(card))
 
+    // Preusmjeri korisnika na detalje o događaju bez provjere prijave
     router.push(`/termin?id=${card.id}`)
   }
 
