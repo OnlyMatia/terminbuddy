@@ -5,16 +5,17 @@ import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 
 const links = [
-    { name: "home", route: "/" },
-    { name: "about", route: "/about" },
-    { name: "contact", route: "/contact" },
-    { name: "post", route: "/post" },
+    { name: "home", ime:"početna", route: "/" },
+    { name: "about", ime: "o nama", route: "/about" },
+    { name: "contact", ime: "kontakt", route: "/contact" },
+    { name: "post", ime: "objavi", route: "/post" },
 ]
 
 export default function Navbar() {
     const [isMobile, setMobile] = useState(false)
     const [isOpen, setOpen] = useState(false)
     const pathname = usePathname()
+    const [lang, setLang] = useState(true)
 
     useEffect(() => {
         const handleResize = () => {
@@ -41,7 +42,7 @@ export default function Navbar() {
                 return (
                 <li className="group" key={el.name}>
                     <Link href={el.route} className="group capitalize">
-                    {el.name}
+                    {lang ? el.name : el.ime}
                     </Link>
                     <span
                     className={`block h-[2px] ${
@@ -53,6 +54,17 @@ export default function Navbar() {
             })}
             </ul>
 
+            <div className="text-medium text-[#ffffffa6]">
+                <span className="hover:text-white cursor-pointer"
+                onClick={() => setLang(true)}>
+                    EN
+                </span>
+                 / 
+                <span  className="hover:text-white  cursor-pointer"
+                onClick={() => setLang(false)}>
+                    HR
+                </span>
+            </div>
             
             <button
             className="md:hidden flex flex-col justify-center gap-1.5 rounded z-50 cursor-pointer"

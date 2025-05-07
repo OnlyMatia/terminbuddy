@@ -62,7 +62,7 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
           >
-            <option value="">Odaberi lokaciju (svi)</option>
+            <option value="">Choose Location (all)</option>
             {["Mostar", "Sarajevo", "Split", "Zagreb"].map((loc) => (
               <option key={loc} value={loc}>
                 {loc}
@@ -75,7 +75,7 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
             value={selectedSport}
             onChange={(e) => setSelectedSport(e.target.value)}
           >
-            <option value="">Odaberi sport (svi)</option>
+            <option value="">Choose Sport (all)</option>
             {[
               "Football", "Futsal", "Volleyball", "Basketball", "Padel", "Tennis", "Table Tennis"
             ].map((sport) => (
