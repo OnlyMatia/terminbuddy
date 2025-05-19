@@ -59,12 +59,12 @@ export default function Footer() {
             <div className="bg-[#0a0a0a] w-full py-4 text-center text-xs text-[#9f9f9f]">
                 Designed & Developed by{" "}
                 <a
-                    href="https://portfolio-three-wine-42.vercel.app/"
+                    href="https://matijasajin.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-white underline transition"
                 >
-                    Matija
+                    matija sajin
                 </a>
             </div>
         </footer>
