@@ -1,4 +1,5 @@
 "use client"
+
 import { useSearchParams } from 'next/navigation'
 
 export default function SportDetails() {
@@ -11,7 +12,7 @@ export default function SportDetails() {
   const date = searchParams.get("date")
   const location = searchParams.get("location")
   const peopleMissing = searchParams.get("peopleMissing")
-  const author = searchParams.get("author")  
+  const author = searchParams.get("author")
 
   return (
     <div className="min-h-screen bg-[#101828] text-white flex justify-center items-start py-12 px-4 pt-19">
@@ -26,19 +27,19 @@ export default function SportDetails() {
             <p className="mt-4 text-gray-300 text-base leading-relaxed">{description}</p>
 
             <div className="mt-6 space-y-2 text-lg text-gray-400">
-              <p><span className="font-semibold text-white">📍 Location:</span> {location}</p>
-              <p><span className="font-semibold text-white">📅 Date:</span> {date}</p>
-              <p><span className="font-semibold text-white">⏰ Time:</span> {time}</p>
-              <p><span className="font-semibold text-white">👥 Missing players:</span> {peopleMissing}</p>
-              <p><span className="font-semibold text-white">✍️ Author:</span> {author}</p> 
+              <p><span className="font-semibold text-white">📍 Lokacija:</span> {location}</p>
+              <p><span className="font-semibold text-white">📅 Datum:</span> {date}</p>
+              <p><span className="font-semibold text-white">⏰ Vrijeme:</span> {time}</p>
+              <p><span className="font-semibold text-white">👥 Nedostaje igrača:</span> {peopleMissing}</p>
+              <p><span className="font-semibold text-white">✍️ Autor:</span> {author}</p>
             </div>
 
             <div className="mt-8 flex justify-center">
               <button
                 className="cursor-pointer bg-green-600 hover:bg-green-500 transition-colors duration-300 text-white px-6 py-2 rounded-lg font-semibold"
-                onClick={() => alert("!!!")}
+                onClick={() => alert("Kontaktiraj organizatora!")}
               >
-                Contact
+                Kontaktiraj
               </button>
             </div>
           </div>

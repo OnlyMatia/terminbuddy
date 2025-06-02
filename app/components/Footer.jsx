@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Footer() {
     const navLinks = [
-        { name: "Home", route: "/" },
-        { name: "Post", route: "/post" },
-        { name: "About", route: "/about" },
-        { name: "Contact", route: "/contact" },
+        { name: "Početna", route: "/" },
+        { name: "Objavi", route: "/post" },
+        { name: "O Nama", route: "/about" },
+        { name: "Kontakt", route: "/contact" },
     ];
     const socialLinks = [
         { name: "Instagram", route: "https://instagram.com" },
@@ -27,7 +27,7 @@ export default function Footer() {
 
                 
                 <div className="flex flex-col items-start">
-                    <h3 className="text-xl font-semibold mb-2">Navigation</h3>
+                    <h3 className="text-xl font-semibold mb-2">Navigacija</h3>
                     <ul className="space-y-2 text-normal">
                         {navLinks.map((el) => (
                             <li className="group text-[#ffffffb4]" key={el.name}>
@@ -42,7 +42,7 @@ export default function Footer() {
 
                 
                 <div className="flex flex-col items-start">
-                    <h3 className="text-xl font-semibold mb-2">Social</h3>
+                    <h3 className="text-xl font-semibold mb-2">Društvene mreže</h3>
                     <ul className="space-y-2 text-normal">
                         {socialLinks.map((el) => (
                             <li className="group text-[#ffffffb4]" key={el.name}>
@@ -56,8 +56,8 @@ export default function Footer() {
                 </div>
             </div>
             
-            <div className="bg-[#0a0a0a] w-full py-4 text-center text-xs text-[#9f9f9f]">
-                Designed & Developed by{" "}
+            <div className="bg-[#0a0a0a] w-full py-2 text-center text-sm text-[#9f9f9f]">
+                Napravio -{" "}
                 <a
                     href="https://matijasajin.com"
                     target="_blank"
@@ -66,6 +66,7 @@ export default function Footer() {
                 >
                     matija sajin
                 </a>
+                
             </div>
         </footer>
     );

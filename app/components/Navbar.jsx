@@ -4,11 +4,18 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 
+// const links = [
+//     { name: "home", ime:"početna", route: "/" },
+//     { name: "about", ime: "o nama", route: "/about" },
+//     { name: "contact", ime: "kontakt", route: "/contact" },
+//     { name: "post", ime: "objavi", route: "/post" },
+// ]
+
 const links = [
-    { name: "home", ime:"početna", route: "/" },
-    { name: "about", ime: "o nama", route: "/about" },
-    { name: "contact", ime: "kontakt", route: "/contact" },
-    { name: "post", ime: "objavi", route: "/post" },
+    { name: "početna", route: "/" },
+    { name: "o nama", route: "/about" },
+    { name: "kontakt", route: "/contact" },
+    { name: "objavi", route: "/post" },
 ]
 
 export default function Navbar() {
@@ -54,7 +61,7 @@ export default function Navbar() {
             })}
             </ul>
 
-            <div className="text-medium text-[#ffffffa6]">
+            {/* <div className="text-medium text-[#ffffffa6]">
                 <span className="hover:text-white cursor-pointer"
                 onClick={() => setLang(true)}>
                     EN
@@ -64,7 +71,7 @@ export default function Navbar() {
                 onClick={() => setLang(false)}>
                     HR
                 </span>
-            </div>
+            </div> */}
             
             <button
             className="md:hidden flex flex-col justify-center gap-1.5 rounded z-50 cursor-pointer"

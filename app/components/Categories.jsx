@@ -1,18 +1,28 @@
 export default function Categories({ onSelectSport }) {
   return (
     <header className="bg-[#1E2939] w-full p-0 sm:p-5 overflow-hidden">
-      <h2 className="text-white text-lg sm:text-2xl font-bold p-3 flex sm:justify-center">Most popular:</h2>
+      <h2 className="text-white text-lg sm:text-xl font-bold uppercase p-3 flex sm:justify-center">Najpopularnije kategorije:</h2>
       <div className="flex gap-2 sm:gap-5 py-3 px-2 sm:justify-center overflow-x-auto scrollbar-hide whitespace-nowrap">
-        <CatCard sport="Football" image="/nogomet.jpg" 
-        onClick={() => {onSelectSport("Football")
-          const el = document.getElementById("main");
-          if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }}} />
-        <CatCard sport="Tennis" image="/tenis.jpg" onClick={() => onSelectSport("Tennis")} />
-        <CatCard sport="Padel" image="/padel.jpg" onClick={() => onSelectSport("Padel")} />
-        <CatCard sport="Basketball" image="/kosarka.png" onClick={() => onSelectSport("Basketball")} />
-        <CatCard sport="Volleyball" image="/odbojka.jpg" onClick={() => onSelectSport("Volleyball")} />
+        {[
+          { sport: "Nogomet", label: "Football", image: "/nogomet.jpg" },
+          { sport: "Tenis", label: "Tennis", image: "/tenis.jpg" },
+          { sport: "Padel", label: "Padel", image: "/padel.jpg" },
+          { sport: "Košarka", label: "Basketball", image: "/kosarka.png" },
+          { sport: "Odbojka", label: "Volleyball", image: "/odbojka.jpg" },
+        ].map(({ sport, label, image }) => (
+          <CatCard
+            key={sport}
+            sport={sport}
+            image={image}
+            onClick={() => {
+              onSelectSport(label);
+              const el = document.getElementById("main");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          />
+        ))}
       </div>
     </header>
   )

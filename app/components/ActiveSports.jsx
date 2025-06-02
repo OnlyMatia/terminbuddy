@@ -55,14 +55,14 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
   return (
     <section id="main" className="min-h-screen bg-[#101828] w-full text-white">
       <div className="max-w-7xl mx-auto px-5">
-        <h2 className="text-center py-10 text-4xl sm:text-5xl font-semibold">Currently Active:</h2>
+        <h2 className="text-center py-10 text-4xl sm:text-5xl font-semibold uppercase">Trenutno aktivni:</h2>
         <div className="flex flex-row gap-5 justify-center mb-10">
           <select
             className="bg-gray-800 text-white p-3 rounded-xl w-full md:w-1/3 outline-none border border-gray-700 focus:ring-2 focus:ring-blue-500"
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
           >
-            <option value="">Choose Location (all)</option>
+            <option value="">Izaberi lokaciju (sve)</option>
             {["Mostar", "Sarajevo", "Split", "Zagreb"].map((loc) => (
               <option key={loc} value={loc}>
                 {loc}
@@ -75,7 +75,7 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
             value={selectedSport}
             onChange={(e) => setSelectedSport(e.target.value)}
           >
-            <option value="">Choose Sport (all)</option>
+            <option value="">Izaberi sport (sve)</option>
             {[
               "Football", "Futsal", "Volleyball", "Basketball", "Padel", "Tennis", "Table Tennis"
             ].map((sport) => (
@@ -88,7 +88,7 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
           {loading ? (
-            <div className="col-span-full text-center text-gray-400">Loading posts...</div>
+            <div className="col-span-full text-center text-gray-400">Učitavanje...</div>
           ) : posts.length > 0 ? (
             posts.map((card, index) => (
               <div
@@ -102,16 +102,16 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
                 />
                 <div className="p-5 space-y-2">
                   <h2 className="text-2xl font-bold">{card.sport}</h2>
-                  <p className="text-sm text-gray-300">Location: {card.location}</p>
-                  <p className="text-sm text-gray-300">Need people: {card.peoplemissing}</p>
+                  <p className="text-sm text-gray-300">Lokacija: {card.location}</p>
+                  <p className="text-sm text-gray-300">Potrebno igrača: {card.peoplemissing}</p>
                   <p className="text-gray-400 text-sm">
                     {card.description?.length > 30 ? `${card.description.slice(0, 20)}...` : card.description}
                   </p>
-                  <p className="text-sm text-gray-500">Time: {card.time} | Date: {card.date}</p>
-                  <p className="text-sm text-gray-500">Posted by: <span className="text-[#b7b7b7] hover:text-white">{card.author}</span></p>
+                  <p className="text-sm text-gray-500">Vrijeme: {card.time} | Datum: {card.date}</p>
+                  <p className="text-sm text-gray-500">Objavio: <span className="text-[#b7b7b7] hover:text-white">{card.author}</span></p>
                   <div className="flex gap-3 pt-2">
                     <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-500 transition-all">
-                      More info
+                      Pogledaj više
                     </button>
                   </div>
                 </div>
@@ -119,7 +119,7 @@ export default function ActiveSports({ selectedSport, setSelectedSport }) {
             ))
           ) : (
             <div className="col-span-full text-center text-green-500">
-              No active posts available.
+              Nema aktivnih objava
             </div>
           )}
         </div>
